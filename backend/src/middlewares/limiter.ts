@@ -21,7 +21,7 @@ const limiter = rateLimit({
     limit: env_config.RATE_LIMIT_MAX_REQUESTS,
     legacyHeaders: false,
     standardHeaders: 'draft-8',
-    skip: (request => request.path === "/api/health"), // Exclude health checks
+    skip: (request => request.path === `/api/${env_config.API_VERSION}/health`), // Exclude health checks
     keyGenerator: (request, response) => response.locals.user?.email || request.ip, // Track users if authenticated
     handler: (req, res) => {
         logger.warn(`[RateLimit] Too many requests from: ${res.locals.user?.email || req.ip}`);
