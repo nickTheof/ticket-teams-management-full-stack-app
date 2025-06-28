@@ -4,7 +4,14 @@
   "description": "A Ticket Management Rest API built in Typescript using Express and Mongoose",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "env:dev": "cpy .env.dev . --rename=.env",
+    "env:test": "cpy .env.test . --rename=.env",
+    "env:prod": "cpy .env.prod . --rename=.env",
+    "build": "tsc",
+    "prestart": "npm run env:prod && npm run build",
+    "start": "cross-env TS_NODE_PROJECT=tsconfig-paths.json node -r tsconfig-paths/register dist/server.js",
+    "dev": "npm run env:dev && tsc && node dist/seed/roles.seed.js && node dist/server.js",
+    "test": "npm run env:test && tsc && jest",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write ."
   },
@@ -18,11 +25,14 @@
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
+    "inversify": "^7.0.0-alpha.5",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "mongodb": "^6.17.0",
     "mongoose": "^8.15.2",
     "multer": "^2.0.1",
     "nodemailer": "^7.0.3",
+    "reflect-metadata": "^0.2.2",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0",
     "winston-mongodb": "^7.0.0",
@@ -34,6 +44,7 @@
     "@types/express": "^5.0.3",
     "@types/hpp": "^0.2.6",
     "@types/jsonwebtoken": "^9.0.9",
+    "@types/module-alias": "^2.0.4",
     "@types/node": "^24.0.7",
     "@types/nodemailer": "^6.4.17",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
@@ -46,7 +57,9 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.1",
     "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3"
   }
 }
