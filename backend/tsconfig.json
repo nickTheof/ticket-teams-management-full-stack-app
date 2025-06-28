@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",             // Make "src" the base for all paths
+    "paths": {
+      "@/*": [
+        "*"                       // Map "@" to "src/*"
+      ]
+    },
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "sourceMap": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
